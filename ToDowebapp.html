@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./style.css">
+<title>Todo WebApp</title>
+<style>
+    
+  * {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 150px;
+  background-image: linear-gradient(to right bottom, #6b6c6c, #111111);
+  height: 100%;
+}
+.wrapper{
+  background: #fff;
+  max-width: 400px;
+  width: 100%;
+  margin: 45px auto;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(170, 100, 100, 0.2), 0 6px 20px 0 rgba(203, 155, 155, 0.19);
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #3a3939;
+  font-size: 18px;
+  transition: 0.2s;
+  border-radius: 10px;
+}
+li{
+    margin-top: 10px;
+}
+ul li:nth-child(odd) {
+  background: #333232;
+}
+ul li:hover {
+  background: #3b3a3a;
+}
+ul li.checked {
+  background: #888;
+  color: #494646;
+  text-decoration: line-through;
+}
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #eca2a2;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+.close:hover {
+  background-color: #84c6ed;
+  color: rgb(4, 83, 72);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.header {
+  background: linear-gradient(to bottom right,#f0a1f4,#f46b96);
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  border-radius: 15px;
+}
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+.addBtn:hover {
+  background-color: #02193a;
+}
+.credit{
+    text-align: center;
+    color: #000;
+    width: 100%;
+}
+.credit a{
+    text-decoration: none;
+    color: #131414;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<div id="myDIV" class="header">
+  <h2 style="margin:5px">To Do List</h2>
+  <input type="text" id="myInput" placeholder="My Work...">
+  <span onclick="newElement()" class="addBtn">Add</span>
+</div>
+<ul id="myUL">
+  <li>Prepare</li>
+  <li>outside</li>
+  <li class="checked">Practice</li>
+  <li>Practice Coding</li>
+  <li>online Course</li>
+  <li>Motive yourself</li>
+  <li>Test</li>
+  <li>Game</li>
+  <li>Mobile</li>
+  
+</ul>
+</div>
+
+ <script>
+  
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "hai";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none"; 
+   }
+ }  
+}
+
+
+</script>
+</body>
+</html>
